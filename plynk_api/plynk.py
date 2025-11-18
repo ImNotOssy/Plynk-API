@@ -9,9 +9,11 @@ from curl_cffi import requests
 from typing import Optional, Callable
 
 try:
-    from plynk_api import endpoints
-except ImportError:
-    import endpoints
+    from . import endpoints
+except Exception:
+    # Fallback for environments where package-relative imports aren't available:
+    import importlib
+    endpoints = importlib.import_module("endpoints")
 
 
 
